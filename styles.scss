@@ -1,0 +1,38 @@
+/* Breytur sem notaðar eru endurtekið */
+$grunnur-font: 16px; /* Stöðluð textastærð */
+$gutter: 20px; /* Staðlaður gutter á grind */
+
+/* Staðlaðar skjástærðir */
+$max-width: 1200px;
+$mid-width: 600px;
+$min-width: 400px;
+
+/* Breytur með letrinu */
+$font-main: "Open-sans", "helvetica","sans-serif";
+$font-Head: "Roboto Slap";
+
+html { /* stylelint-disable-line */
+  box-sizing: border-box;
+}
+
+*, *:before, *::after { /* stylelint-disable-line */
+  box-sizing: inherit;
+
+  padding: 0;
+  margin: 0;
+}
+
+html { /* stylelint-disable-line */
+  line-height: 1.5;
+}
+img { /* stylelint-disable-line */
+  max-width: 100%;
+}
+
+main { /* stylelint-disable-line */
+  max-width: $max-width;
+  margin: 0 auto;
+
+  overflow-x: hidden;
+}
+@import "scss/grid";
