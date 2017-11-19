@@ -11,17 +11,25 @@
       <h1 class = "heading">Myndbandaleigan</h1>
     </header>
     <main>
-      <div class = "videous__container">
-        <p class = "videos__heading"> Nýleg myndbönd </p>
-      </div>
-      <div class = "videous__container">
-        <p class = "videos__heading"> Kennslumyndbönd </p>
-      </div>
-      <div class = "videous__container">
-        <p class = "videos__heading"> Skemmtimyndbönd </p>
-      </div>
+      <section class = "videos">
+        <div class = "videos__container" id="ny">
+          <p class = "videos__heading"> Nýleg myndbönd </p>
+          <div class = "videos__content"></div>
+        </div>
+        <div class = "videos__container" id="kennsla">
+          <p class = "videos__heading"> Kennslumyndbönd </p>
+          <div class = "videos__content"></div>
+        </div>
+        <div class = "videos__container" id="skemmtun">
+          <p class = "videos__heading"> Skemmtimyndbönd </p>
+          <div class = "videos__content"></div>
+        </div>
+      </section>
     </main>
 
     <script src = "script-compiled.js"></script>
+    <script>
+      index_init();
+    </script>
   </body>
 </html>
