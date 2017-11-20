@@ -24,7 +24,13 @@ html { /* stylelint-disable-line */
 
 html { /* stylelint-disable-line */
   line-height: 1.5;
+  background-color: rgb(35,35,35);
 }
+h1,h2 {
+  font-family: $font-main;
+  color: rgb(255,255,255);
+}
+
 img { /* stylelint-disable-line */
   max-width: 100%;
 }
@@ -36,3 +42,4 @@ main { /* stylelint-disable-line */
   overflow-x: hidden;
 }
 @import "scss/grid";
+@import "scss/text";

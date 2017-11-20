@@ -3,7 +3,7 @@
   <head>
     <meta charset-"utf-8">
     <title>Leigusíða</title>
-    <link rel = "stylesheet" href = "style.css">
+    <link rel = "stylesheet" href = "styles.css">
     <link rel = "stylesheet" href = "grid.css">
   </head>
   <body>
@@ -12,24 +12,36 @@
     </header>
     <main>
       <section class = "videos">
-        <div class = "videos__container" id="ny">
-          <p class = "videos__heading"> Nýleg myndbönd </p>
-          <div class = "videos__content"></div>
-        </div>
-        <div class = "videos__container" id="kennsla">
-          <p class = "videos__heading"> Kennslumyndbönd </p>
-          <div class = "videos__content"></div>
-        </div>
-        <div class = "videos__container" id="skemmtun">
-          <p class = "videos__heading"> Skemmtimyndbönd </p>
-          <div class = "videos__content"></div>
+        <div class = "grid">
+          <div class = "results">
+            <div class = "videos__container">
+              <div class = "row">
+                <h2 class = "videos__heading"> Nýleg myndbönd </h2>
+              </div>
+              <div class = "row">
+                <div class = "videos__content" id="ny"></div>
+              </div>
+            </div>
+            <div class = "videos__container">
+              <div class = "row">
+                <h2 class = "videos__heading"> Kennslumyndbönd </h2>
+              </div>
+              <div class = "row">
+                <div class = "videos__content" id="kennsla"></div>
+              </div>
+            </div>
+            <div class = "videos__container">
+              <div class = "row">
+                <h2 class = "videos__heading"> Skemmtimyndbönd </h2>
+              </div>
+              <div class = "row">
+                <div class = "videos__content" id="skemmtun"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
-
     <script src = "script-compiled.js"></script>
-    <script>
-      index_init();
-    </script>
   </body>
 </html>

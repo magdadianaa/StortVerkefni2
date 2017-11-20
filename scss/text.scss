@@ -1,0 +1,11 @@
+$font-main: "Open-sans", "helvetica","sans-serif";
+$gutter: 20px;
+
+.text {
+  &__heading {
+    font-family: $font-main;
+    font-size: $gutter;
+    color: rgb(255, 255, 255);
+  }
+
+}
