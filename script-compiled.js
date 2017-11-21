@@ -32,18 +32,18 @@ var program = function () {
       kennsluVideo.classList.add('row__container');
       var kennsla = data.categories[1].videos;
       for (var i = 0; i < kennsla.length; i++) {
-        var gildi = kennsla[i];
-        create(data.videos[gildi - 1], kennsluVideo);
+        var _gildi = kennsla[i];
+        create(data.videos[_gildi - 1], kennsluVideo);
       }
 
       var skemmtiVideo = videos.querySelector('#skemmtun');
       skemmtiVideo.classList.add('row__container');
       var skemmtun = data.categories[2].videos;
       for (var i = 0; i < skemmtun.length; i++) {
-        var gildi = skemmtun[i];
-        console.log(gildi);
-        console.log(data.videos[gildi - 1]);
-        create(data.videos[gildi - 1], skemmtiVideo);
+        var _gildi2 = skemmtun[i];
+        console.log(_gildi2);
+        console.log(data.videos[_gildi2 - 1]);
+        create(data.videos[_gildi2 - 1], skemmtiVideo);
       }
     };
     request.send();

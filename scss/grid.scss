@@ -16,7 +16,7 @@ $max-width: 1000px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px #808080 solid;
+    border-bottom: 1px #eee solid;
   }
 }
 @mixin columns($col: 1) {

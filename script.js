@@ -1,42 +1,42 @@
-var API = './videos.json';
+const API = './videos.json';
 
 document.addEventListener('DOMContentLoaded', function() {
-  var videos = document.querySelector('.videos');
+  const videos = document.querySelector('.videos');
 
   program.init(videos);
 });
 
-var program = (function() {
+const program = (function() {
 
   function open(videos) {
-    var request = new XMLHttpRequest();
+    const request = new XMLHttpRequest();
 
     request.open('GET', API, true);
     request.onload = function() {
-      var data = JSON.parse(request.response);
+      const data = JSON.parse(request.response);
 
-      var nyVideo = videos.querySelector('#ny');
+      const nyVideo = videos.querySelector('#ny');
       nyVideo.classList.add('row__container');
-      var ny = data.categories[0].videos;
+      const ny = data.categories[0].videos;
 
       for(var i = 0; i < ny.length; i++) {
-        var gildi = ny[i];
+        const gildi = ny[i];
         create(data.videos[gildi-1], nyVideo);
       }
 
-      var kennsluVideo = videos.querySelector('#kennsla');
+      const kennsluVideo = videos.querySelector('#kennsla');
       kennsluVideo.classList.add('row__container');
-      var kennsla = data.categories[1].videos;
+      const kennsla = data.categories[1].videos;
       for(var i = 0; i < kennsla.length; i++) {
-        var gildi = kennsla[i];
+        const gildi = kennsla[i];
         create(data.videos[gildi-1], kennsluVideo);
       }
 
-      var skemmtiVideo = videos.querySelector('#skemmtun');
+      const skemmtiVideo = videos.querySelector('#skemmtun');
       skemmtiVideo.classList.add('row__container');
-      var skemmtun = data.categories[2].videos;
+      const skemmtun = data.categories[2].videos;
       for(var i = 0; i < skemmtun.length; i++) {
-        var gildi = skemmtun[i];
+        const gildi = skemmtun[i];
         console.log(gildi);
         console.log(data.videos[gildi-1]);
         create(data.videos[gildi-1], skemmtiVideo);
@@ -47,7 +47,7 @@ var program = (function() {
   }
 
   function element(name, child) {
-    var el = document.createElement(name);
+    const el = document.createElement(name);
 
     if (typeof child === 'string') {
       el.appendChild(document.createTextNode(child));
@@ -59,19 +59,19 @@ var program = (function() {
   }
 
   function create(stak, container) {
-    var mynd = document.createElement('img');
-    var lengd = document.createElement('span');
+    const mynd = document.createElement('img');
+    const lengd = document.createElement('span');
     lengd.innerText = stak.duration;
 
     mynd.appendChild(lengd);
 
     mynd.src = stak.poster;
-    var titill = stak.title;
+    const titill = stak.title;
 
     var sidan = buidTil(stak.created);
 
 
-    var ul = element('dl');
+    const ul = element('dl');
     ul.appendChild(mynd);
 
     ul.appendChild(element('dd', titill));
