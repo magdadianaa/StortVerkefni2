@@ -71,7 +71,7 @@ var program = function () {
     mynd.src = stak.poster;
     var titill = stak.title;
 
-    var sidan = sidan(stak.created);
+    var sidan = buidTil(stak.created);
 
     var ul = element('dl');
     ul.appendChild(mynd);
@@ -85,7 +85,7 @@ var program = function () {
     container.appendChild(ul);
   }
 
-  function sidan(runa) {
+  function buidTil(runa) {
     var dagur = new Date(runa);
     var munur = new Date().getTime() - dagur;
     var d = Math.floor(munur / 1000 / (60 * 60 * 24));
