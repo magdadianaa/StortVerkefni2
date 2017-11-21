@@ -41,8 +41,6 @@ var program = function () {
       var skemmtun = data.categories[2].videos;
       for (var i = 0; i < skemmtun.length; i++) {
         var _gildi2 = skemmtun[i];
-        console.log(_gildi2);
-        console.log(data.videos[_gildi2 - 1]);
         create(data.videos[_gildi2 - 1], skemmtiVideo);
       }
     };
@@ -62,6 +60,7 @@ var program = function () {
   }
 
   function create(stak, container) {
+    var numer = stak.id;
     var mynd = document.createElement('img');
     var lengd = document.createElement('span');
     lengd.innerText = stak.duration;
@@ -80,6 +79,10 @@ var program = function () {
     ul.classList.add('row__content');
 
     ul.appendChild(element('dd', sidan));
+    console.log(ul);
+    ul.addEventListener('click', function () {
+      window.location.href = numer;
+    });
 
     container.classList.add('text__heading');
     container.appendChild(ul);

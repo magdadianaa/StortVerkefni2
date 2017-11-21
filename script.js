@@ -37,8 +37,6 @@ const program = (function() {
       const skemmtun = data.categories[2].videos;
       for(var i = 0; i < skemmtun.length; i++) {
         const gildi = skemmtun[i];
-        console.log(gildi);
-        console.log(data.videos[gildi-1]);
         create(data.videos[gildi-1], skemmtiVideo);
       }
 
@@ -59,6 +57,7 @@ const program = (function() {
   }
 
   function create(stak, container) {
+    const numer = stak.id;
     const mynd = document.createElement('img');
     const lengd = document.createElement('span');
     lengd.innerText = stak.duration;
@@ -78,6 +77,12 @@ const program = (function() {
     ul.classList.add('row__content');
 
     ul.appendChild(element('dd', sidan));
+    console.log(ul);
+
+    ul.addEventListener('click', () => {
+      window.location.href = numer;
+
+    });
 
     container.classList.add('text__heading');
     container.appendChild(ul);
