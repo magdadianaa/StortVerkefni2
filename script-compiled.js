@@ -62,24 +62,37 @@ var program = function () {
   function create(stak, container) {
     var numer = stak.id;
     var mynd = document.createElement('img');
-    var lengd = document.createElement('span');
-    lengd.innerText = stak.duration;
-
-    mynd.appendChild(lengd);
 
     mynd.src = stak.poster;
     var titill = stak.title;
 
     var sidan = buidTil(stak.created);
 
+    var lengd = athugaStak(stak.duration);
+
+    var videoContainer = element('div');
+    videoContainer.classList.add("text__container");
+
+    var divElement = element('div');
+    divElement.classList.add('text__fyrsta');
+
+    var divTveir = element('div');
+    divTveir.classList.add('text__seinna');
+    divTveir.appendChild(document.createTextNode(lengd));
+
+    divElement.appendChild(divTveir);
+    divElement.appendChild(mynd);
+
     var ul = element('dl');
-    ul.appendChild(mynd);
+    ul.appendChild(videoContainer);
+    videoContainer.appendChild(divElement);
 
     ul.appendChild(element('dd', titill));
     ul.classList.add('row__content');
 
     ul.appendChild(element('dd', sidan));
     console.log(ul);
+
     ul.addEventListener('click', function () {
       window.location.href = numer;
     });
@@ -128,6 +141,18 @@ var program = function () {
       return 'Fyrir ' + k + ' klukkustundum síðan';
     }
     return 'Fyrir 1 klukkustund síðan';
+  }
+
+  function athugaStak(time) {
+    var minutes = Math.floor(time / 60);
+    var seconds = time - minutes * 60;
+    var lenSec = seconds.toString().length;
+    if (lenSec < 2) {
+      console.log("sec ", seconds.toString().length);
+      seconds = "0" + seconds.toString();
+    }
+    var skilum = minutes + ":" + seconds;
+    return skilum;
   }
 
   function init(videos) {

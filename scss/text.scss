@@ -8,4 +8,18 @@ $gutter: 20px;
     color: rgb(255, 255, 255);
   }
 
+  &__container {
+    position:relative;
+  }
+
+  &__seinna {
+    float: left;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    margin: 1em;
+    opacity: .8;
+  }
 }

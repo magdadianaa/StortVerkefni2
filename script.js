@@ -59,19 +59,31 @@ const program = (function() {
   function create(stak, container) {
     const numer = stak.id;
     const mynd = document.createElement('img');
-    const lengd = document.createElement('span');
-    lengd.innerText = stak.duration;
-
-    mynd.appendChild(lengd);
 
     mynd.src = stak.poster;
     const titill = stak.title;
 
     var sidan = buidTil(stak.created);
 
+    const lengd = athugaStak(stak.duration);
+
+    const videoContainer = element('div');
+    videoContainer.classList.add("text__container");
+
+    const divElement = element('div');
+    divElement.classList.add('text__fyrsta');
+
+    const divTveir = element('div');
+    divTveir.classList.add('text__seinna');
+    divTveir.appendChild(document.createTextNode(lengd));
+
+    divElement.appendChild(divTveir);
+    divElement.appendChild(mynd);
+
 
     const ul = element('dl');
-    ul.appendChild(mynd);
+    ul.appendChild(videoContainer);
+    videoContainer.appendChild(divElement);
 
     ul.appendChild(element('dd', titill));
     ul.classList.add('row__content');
@@ -128,6 +140,19 @@ const program = (function() {
       return 'Fyrir ' + k + ' klukkustundum síðan';
     }
     return 'Fyrir 1 klukkustund síðan';
+  }
+
+  function athugaStak(time) {
+    const minutes = Math.floor(time / 60);
+    var seconds = time - minutes * 60;
+    const lenSec = seconds.toString().length;
+    if(lenSec < 2) {
+      console.log("sec " , seconds.toString().length);
+      seconds = "0" + seconds.toString();
+      
+    }
+    const skilum = minutes + ":" + seconds;
+    return skilum;
   }
 
   function init(videos) {
