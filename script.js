@@ -68,7 +68,7 @@ var program = (function() {
     mynd.src = stak.poster;
     var titill = stak.title;
 
-    var sidan = stak.created;
+    var sidan = sidan(stak.created);
 
 
     var ul = element('dl');
@@ -82,6 +82,49 @@ var program = (function() {
     container.classList.add('text__heading');
     container.appendChild(ul);
   }
+
+  function sidan(runa){
+    const dagur = new Date(runa);
+    const munur = new Date().getTime() - dagur;
+    const d = Math.floor((munur/1000) / (60 * 60 * 24));
+    if(d > 365){
+      const y = Math.floor(d/365);
+      if(y === 1){
+        return 'Fyrir 1 ári síðan';
+      }else {
+        return 'Fyrir ' + y + ' árum síðan';
+      }
+    }
+    if(d > 30){
+      const m = Math.floor(d/30);
+      if(m === 1){
+        return 'Fyrir 1 mánuði síðan';
+      }else {
+        return 'Fyrir ' + m + ' mánuðum síðan';
+      }
+    }
+    if(d > 7){
+      const v = Math.floor(d/7);
+      if(v === 1){
+        return 'Fyrir 1 viku síðan';
+      }else {
+        return 'Fyrir ' + v + ' vikum síðan';
+      }
+    }
+    if(d > 0){
+      if(d === 1){
+        return 'Fyrir 1 degi síðan';
+      }else {
+        return 'Fyrir ' + d + ' vikum síðan';
+      }
+    }
+    const k = Math.floor((munur/1000) / (60 * 60));
+    if(k > 1 || k === 0){
+      return 'Fyrir ' + k + ' klukkustundum síðan';
+    }
+    return 'Fyrir 1 klukkustund síðan';
+  }
+
   function init(videos) {
     open(videos);
   }
