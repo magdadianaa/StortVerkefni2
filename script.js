@@ -93,7 +93,6 @@ const program = (function() {
 
     ul.addEventListener('click', () => {
       window.location.href = numer;
-
     });
 
     container.classList.add('text__heading');
@@ -149,7 +148,7 @@ const program = (function() {
     if(lenSec < 2) {
       console.log("sec " , seconds.toString().length);
       seconds = "0" + seconds.toString();
-      
+
     }
     const skilum = minutes + ":" + seconds;
     return skilum;
