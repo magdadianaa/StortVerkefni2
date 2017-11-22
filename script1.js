@@ -40,7 +40,7 @@ const program = (function() {
 
 
     container.appendChild(video_play);
-    const play = document.querySelector('.playPause');
+    takkarSettir();
     play.addEventListener('click', () => {
       playTakki();
     });
@@ -54,30 +54,56 @@ const program = (function() {
       empty(spilari);
     });
   }
+
+  function takkarSettir(){
+    const back = document.querySelector('.button__controls--back');
+    back.addEventListener('click', spolaTilbaka());
+
+    const play = document.querySelector('.button__controls--play');
+    play.addEventListener('click', playTakki());
+
+    const mute = document.querySelector('.button__controls--mute');
+    mute.addEventListener('click', muteTakki());
+
+    const full = document.querySelector('.button__controls--fullscreen');
+    full.addEventListener('click', fullScreenTakki());
+
+    const forward = document.querySelector('.button__controls--forward');
+    forward.addEventListener('click', spolaAfram());
+  }
+
   function playTakki(){
   if(video.paused == false){
     video.pause();
-    //Skipta um mynd
+    const takki = document.querySelector('.button__controls--play');
+    takki.classList.removeChild('button__controls--play');
+    takki.classList.appendChild('button__controls--pause');
+    //Setja overlay
   } else {
     video.play();
-    //Skipta um mynd
+    const takki = document.querySelector('.button__controls--pause');
+    takki.classList.removeChild('button__controls--pause');
+    takki.classList.appendChild('button__controls--play');
+    //Taka af overlay
   }
 }
 
 function muteTakki(){
   if(video.muted == false){
     video.muted = true;
-    //Skipta um mynd
+    const takki = document.querySelector('.button__controls--mute');
+    takki.classList.removeChild('button__controls--mute');
+    takki.classList.appendChild('button__controls--notmute');
   } else {
     video.muted = false;
-    //Skipta um mynd
+    const takki = document.querySelector('.button__controls--notmute');
+    takki.classList.removeChild('button__controls--notmute');
+    takki.classList.appendChild('button__controls--mute');
   }
 }
-/*
 function fullScreenTakki(){
-  video.requestFullscreen(); // ekki allveg komið
+  //video.requestFullscreen(); ---> þetta er eh skrítið
 }
-*/
 
 function spolaTilbaka(){
   if(video.currenttime <= 3){
