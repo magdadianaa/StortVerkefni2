@@ -29,7 +29,13 @@ html { /* stylelint-disable-line */
 h1,h2 {
   font-family: $font-main;
   color: rgb(255,255,255);
+  padding: 1em 0;
 }
+
+h1:first-of-type {
+  padding-bottom: 0;
+}
+
 
 img { /* stylelint-disable-line */
   max-width: 100%;
@@ -43,3 +49,5 @@ main { /* stylelint-disable-line */
 }
 @import "scss/grid";
 @import "scss/text";
+@import "scss/videos";
+@import "scss/container";

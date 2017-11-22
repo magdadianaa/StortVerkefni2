@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+
+
+    &__content {
+        width: 50%;
+        padding-bottom: 3em;
+
+        @media(max-width: 500px) {
+            width: 100%;
+        }
+    }
+
+    &__row {
+
+        @media(max-width: 1000px) {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        @media(max-width: 500px) {
+          flex-direction: column;
+        }
+    }
+    
+}
+
+.container:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 85%;
+    border-bottom: 1px #eee solid;
+}

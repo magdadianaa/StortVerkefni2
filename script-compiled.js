@@ -83,14 +83,14 @@ var program = function () {
     divElement.appendChild(divTveir);
     divElement.appendChild(mynd);
 
-    var ul = element('dl');
+    var ul = element('div');
     ul.appendChild(videoContainer);
     videoContainer.appendChild(divElement);
 
-    ul.appendChild(element('dd', titill));
-    ul.classList.add('row__content');
+    ul.appendChild(element('div', titill));
+    ul.classList.add('container__content');
 
-    ul.appendChild(element('dd', sidan));
+    ul.appendChild(element('div', sidan));
     console.log(ul);
 
     ul.addEventListener('click', function () {
