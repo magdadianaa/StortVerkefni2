@@ -1,50 +1,10 @@
 const API = './videos.json';
 
-document.addEventListener('DOMContentLoaded', function() {
-  const videos = document.querySelector('.videos');
+var program = (function() {
+  var i;
+  var sidan;
 
-  program.init(videos);
-});
-
-const program = (function() {
-
-  function open(videos) {
-    const request = new XMLHttpRequest();
-
-    request.open('GET', API, true);
-    request.onload = function() {
-      const data = JSON.parse(request.response);
-
-      const nyVideo = videos.querySelector('#ny');
-      nyVideo.classList.add('row__container');
-      const ny = data.categories[0].videos;
-
-      for(var i = 0; i < ny.length; i++) {
-        const gildi = ny[i];
-        create(data.videos[gildi-1], nyVideo);
-      }
-
-      const kennsluVideo = videos.querySelector('#kennsla');
-      kennsluVideo.classList.add('row__container');
-      const kennsla = data.categories[1].videos;
-      for(var i = 0; i < kennsla.length; i++) {
-        const gildi = kennsla[i];
-        create(data.videos[gildi-1], kennsluVideo);
-      }
-
-      const skemmtiVideo = videos.querySelector('#skemmtun');
-      skemmtiVideo.classList.add('row__container');
-      const skemmtun = data.categories[2].videos;
-      for(var i = 0; i < skemmtun.length; i++) {
-        const gildi = skemmtun[i];
-        create(data.videos[gildi-1], skemmtiVideo);
-      }
-
-    };
-    request.send();
-  }
-
-  function element(name, child) {
+  function element (name, child) {
     const el = document.createElement(name);
 
     if (typeof child === 'string') {
@@ -52,23 +12,62 @@ const program = (function() {
     } else if (typeof child === 'object') {
       el.appendChild(child)
     }
-
     return el;
+  }
+  function buidTil(runa) {
+    const dagur = new Date(runa);
+    const munur = new Date().getTime() - dagur;
+    const d = Math.floor((munur/1000) / (60 * 60 * 24));
+    if (d > 365) {
+      const y = Math.floor(d/365);
+      if (y === 1) {
+        return 'Fyrir 1 ári síðan';
+      } else {
+        return 'Fyrir ' + y + ' árum síðan';
+      }
+    }
+    if (d > 30){
+      const m = Math.floor(d/30);
+      if (m === 1) {
+        return 'Fyrir 1 mánuði síðan';
+      } else {
+        return 'Fyrir ' + m + ' mánuðum síðan';
+      }
+    }
+    if (d > 7) {
+      const v = Math.floor(d/7);
+      if (v === 1) {
+        return 'Fyrir 1 viku síðan';
+      } else {
+        return 'Fyrir ' + v + ' vikum síðan';
+      }
+    }
+    if (d > 0){
+      if (d === 1) {
+        return 'Fyrir 1 degi síðan';
+      } else {
+        return 'Fyrir ' + d + ' vikum síðan';
+      }
+    }
+    const k = Math.floor((munur/1000) / (60 * 60));
+    if (k > 1 || k === 0) {
+      return 'Fyrir ' + k + ' klukkustundum síðan';
+    }
+    return 'Fyrir 1 klukkustund síðan';
   }
 
   function create(stak, container) {
-    const numer = stak.id;
     const mynd = document.createElement('img');
 
     mynd.src = stak.poster;
     const titill = stak.title;
 
-    var sidan = buidTil(stak.created);
+    sidan = buidTil(stak.created);
 
     const lengd = athugaStak(stak.duration);
 
     const videoContainer = element('div');
-    videoContainer.classList.add("text__container");
+    videoContainer.classList.add('text__container');
 
     const divElement = element('div');
     divElement.classList.add('text__fyrsta');
@@ -92,65 +91,60 @@ const program = (function() {
     console.log(ul);
 
     ul.addEventListener('click', () => {
-      window.location.href = numer;
+      window.location = slod(stak);
     });
 
     container.classList.add('text__heading');
     container.appendChild(ul);
   }
+  function open(videos) {
+    const request = new XMLHttpRequest();
 
-  function buidTil(runa){
-    const dagur = new Date(runa);
-    const munur = new Date().getTime() - dagur;
-    const d = Math.floor((munur/1000) / (60 * 60 * 24));
-    if(d > 365){
-      const y = Math.floor(d/365);
-      if(y === 1){
-        return 'Fyrir 1 ári síðan';
-      }else {
-        return 'Fyrir ' + y + ' árum síðan';
+    request.open('GET', API, true);
+    request.onload = function() {
+      const data = JSON.parse(request.response);
+
+      const nyVideo = videos.querySelector('#ny');
+      nyVideo.classList.add('row__container');
+      const ny = data.categories[0].videos;
+      for (i = 0; i < ny.length; i++) {
+        const gildi = ny[i];
+        create(data.videos[gildi-1], nyVideo);
       }
-    }
-    if(d > 30){
-      const m = Math.floor(d/30);
-      if(m === 1){
-        return 'Fyrir 1 mánuði síðan';
-      }else {
-        return 'Fyrir ' + m + ' mánuðum síðan';
+
+      const kennsluVideo = videos.querySelector('#kennsla');
+      kennsluVideo.classList.add('row__container');
+      const kennsla = data.categories[1].videos;
+      for (i = 0; i < kennsla.length; i++) {
+        const gildi = kennsla[i];
+        create(data.videos[gildi-1], kennsluVideo);
       }
-    }
-    if(d > 7){
-      const v = Math.floor(d/7);
-      if(v === 1){
-        return 'Fyrir 1 viku síðan';
-      }else {
-        return 'Fyrir ' + v + ' vikum síðan';
+
+      const skemmtiVideo = videos.querySelector('#skemmtun');
+      skemmtiVideo.classList.add('row__container');
+      const skemmtun = data.categories[2].videos;
+      for (i = 0; i < skemmtun.length; i++) {
+        const gildi = skemmtun[i];
+        create(data.videos[gildi-1], skemmtiVideo);
       }
-    }
-    if(d > 0){
-      if(d === 1){
-        return 'Fyrir 1 degi síðan';
-      }else {
-        return 'Fyrir ' + d + ' vikum síðan';
-      }
-    }
-    const k = Math.floor((munur/1000) / (60 * 60));
-    if(k > 1 || k === 0){
-      return 'Fyrir ' + k + ' klukkustundum síðan';
-    }
-    return 'Fyrir 1 klukkustund síðan';
+
+    };
+    request.send();
   }
-
+  function slod (stak) {
+    const numer = stak.id;
+    const url = '/video.html?id=$('+ numer + ')';
+    return url;
+  }
   function athugaStak(time) {
     const minutes = Math.floor(time / 60);
     var seconds = time - minutes * 60;
     const lenSec = seconds.toString().length;
-    if(lenSec < 2) {
-      console.log("sec " , seconds.toString().length);
-      seconds = "0" + seconds.toString();
-
+    if (lenSec < 2) {
+      console.log('sec ', seconds.toString().length);
+      seconds = '0' + seconds.toString();
     }
-    const skilum = minutes + ":" + seconds;
+    const skilum = minutes + ':' + seconds;
     return skilum;
   }
 
@@ -158,6 +152,11 @@ const program = (function() {
     open(videos);
   }
   return {
-    init:init
+    init: init
   }
 })();
+document.addEventListener('DOMContentLoaded', function() {
+  const videos = document.querySelector('.videos');
+
+  program.init (videos);
+});

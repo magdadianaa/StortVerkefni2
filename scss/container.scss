@@ -18,12 +18,18 @@
             display: flex;
             flex-wrap: wrap;
         }
-        
+
         @media(max-width: 500px) {
           flex-direction: column;
         }
     }
-    
+    &__video {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
 
 .container:after {

@@ -10,17 +10,25 @@ const program = (function() {
   var spilari;
   var video;
 
-  function open(id) {
+  function open() {
     const request = new XMLHttpRequest();
 
+    const qs = new URLSearchParams(
+      window.location.search);
+
+    const id = qs.get('id');
+    const gildi = id.substring(2, 3);
+    const tala = parseInt(gildi);
+
     request.open('GET', API, true);
-    request.onload = function() {
-      const data = JSON.parse(request.response);
-
-      const numer = data.videos[id];
-      video = numer.video;
-
-      create(numer, spilari);
+    request.onload = () => {
+      if(request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.response);
+        const numer = data.videos[tala-1];
+        create(numer);
+      } else {
+        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
+      }
     };
     request.send();
 
@@ -29,17 +37,18 @@ const program = (function() {
     empty(spilari);
     const container = document.createElement('div');
     const titill = numer.title;
+    var myndband = numer.video;
+
     spilari.appendChild(container);
     container.appendChild(document.createTextNode(titill));
     container.classList.add('text__heading');
-    var myndband = document.getElementById("spilun");
-    myndband = video;
+    container.classList.add('container__video');
 
-    const video_play = document.createElement('video');
-    video_play.src = myndband;
+    video = document.createElement('video');
+    video.src = myndband;
 
 
-    container.appendChild(video_play);
+    container.appendChild(video);
     takkarSettir();
     play.addEventListener('click', () => {
       playTakki();
@@ -50,12 +59,12 @@ const program = (function() {
 
     back.classList.add('text__heading');
     back.addEventListener('click', () => {
-      window.location.href = index.html;
+      window.location = './index.html';
       empty(spilari);
     });
   }
 
-  function takkarSettir(){
+  function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', spolaTilbaka());
 
@@ -76,6 +85,7 @@ const program = (function() {
   if(video.paused == false){
     video.pause();
     const takki = document.querySelector('.button__controls--play');
+
     takki.classList.removeChild('button__controls--play');
     takki.classList.appendChild('button__controls--pause');
     //Setja overlay
@@ -127,9 +137,8 @@ function spolaAfram(){
     }
   }
   function init(player) {
-    const id = 1;
     spilari = document.querySelector('.player__container');
-    open(id);
+    open();
   }
   return {
     init:init
