@@ -146,7 +146,7 @@ const program = (function program1() {
     open(videos);
   }
   return {
-    init: init,
+    init,
   };
 }());
 document.addEventListener('DOMContentLoaded', () => {
