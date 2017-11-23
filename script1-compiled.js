@@ -36,16 +36,19 @@ var program = function () {
   function create(numer) {
     empty(spilari);
     var container = document.createElement('div');
-    var titill = numer.title;
+    //const titill = numer.title;
     var myndband = numer.video;
 
     spilari.appendChild(container);
-    container.appendChild(document.createTextNode(titill));
-    container.classList.add('text__heading');
+    var titill = document.createElement('h1');
+    titill.innerText = numer.title;
+    container.appendChild(titill);
+    titill.classList.add('text__videoHeader');
     container.classList.add('container__video');
 
     video = document.createElement('video');
     video.src = myndband;
+    video.classList.add('container__myndband');
 
     container.appendChild(video);
     video.pause();
@@ -58,7 +61,7 @@ var program = function () {
     */
     var back = document.querySelector('.back');
 
-    back.classList.add('text__heading');
+    back.classList.add('text__back');
     back.addEventListener('click', function () {
       window.location = './index.html';
       empty(spilari);

@@ -25,6 +25,9 @@
         font-weight: bold;
       }
     }
+    &__textContainer:hover {
+      cursor:default;
+    }
 
     &__row {
 
@@ -38,11 +41,14 @@
         }
     }
     &__video {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    &__myndband {
+      width: 90%;
+    }
 
 }
 

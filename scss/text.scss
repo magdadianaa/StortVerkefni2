@@ -1,6 +1,7 @@
 $font-main: "Open-sans", "helvetica","sans-serif";
 $gutter: 20px;
 $max-width: 1200px;
+$mid-width: 1000px;
 
 .text {
   &__heading {
@@ -9,7 +10,28 @@ $max-width: 1200px;
     color: rgb(255, 255, 255);
     font-size: 1em;
   }
-
+  &__videoHeader {
+    font-family: $font-main;
+    font-size: $gutter;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    margin-bottom: 1 * $gutter;
+    @media(max-width: $min-width) {
+      white-space: wrap;
+      margin: $gutter 0;
+    }
+  }
+  &__back {
+    display: flex;
+    justify-content: center;
+    font-family: $font-main;
+    font-size: $gutter;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+  }
+  &__back:hover {
+      cursor: default;
+  }
   &__container {
     position:relative;
 
@@ -28,5 +50,14 @@ $max-width: 1200px;
     margin: 1em;
     margin-right: 2em;
     opacity: .8;
+  }
+  &__loading {
+    font-family: $font-main;
+    font-size: $gutter;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
