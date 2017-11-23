@@ -99,10 +99,17 @@ var program = function program1() {
     ul.appendChild(videoContainer);
     videoContainer.appendChild(divElement);
 
-    ul.appendChild(element('div', titill));
-    ul.classList.add('container__content');
+    var textaBox = element('div');
 
-    ul.appendChild(element('div', sidan));
+    var title = ul.appendChild(element('p', titill));
+    ul.classList.add('container__content');
+    textaBox.appendChild(title);
+
+    var load = ul.appendChild(element('p', sidan));
+    textaBox.appendChild(load);
+
+    textaBox.classList.add('container__textContainer');
+    ul.appendChild(textaBox);
 
     ul.addEventListener('click', function () {
       window.location = slod(stak);

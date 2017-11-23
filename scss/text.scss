@@ -1,5 +1,6 @@
 $font-main: "Open-sans", "helvetica","sans-serif";
 $gutter: 20px;
+$max-width: 1200px;
 
 .text {
   &__heading {
@@ -13,11 +14,6 @@ $gutter: 20px;
     position:relative;
 
   }
-/* Titil á videos er bold */
-  &__container + div {
-    font-weight: bold;
-  }
-
   &__fyrsta {
     margin-right: 1em;
   }
