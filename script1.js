@@ -114,8 +114,14 @@ const program = (function() {
 
     const full = document.querySelector('.button__controls--fullscreen');
     full.addEventListener('click', () => {
-      //video.requestFullscreen(); ---> þetta er eh skrítið
-    }
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      }
+    });
 
     const forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', () => {

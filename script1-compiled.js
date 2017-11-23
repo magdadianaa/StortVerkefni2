@@ -112,12 +112,18 @@ var program = function () {
         _takki2.classList.add('button__controls--mute');
       }
     });
-    /*
-    const full = document.querySelector('.button__controls--fullscreen');
-    full.addEventListener('click', () => {
-      //video.requestFullscreen(); ---> þetta er eh skrítið
-    }
-    */
+
+    var full = document.querySelector('.button__controls--fullscreen');
+    full.addEventListener('click', function () {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      }
+    });
+
     var forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', function () {
       if (video.duration - video.currentTime <= 3) {
