@@ -68,10 +68,14 @@ var program = function () {
   function takkarSettir() {
     var back = document.querySelector('.button__controls--back');
     back.addEventListener('click', function () {
-      if (video.currenttime <= 3) {
-        video.currenttime = 0;
+      console.log(video.currentTime);
+      console.log('Kemst inn í fallið :P');
+      if (video.currentTime <= 3) {
+        video.currentTime = 0;
+        console.log('fer inn í if');
       } else {
-        video.currenttime -= 3;
+        video.currentTime -= 3;
+        console.log('fer inn í else');
       }
     });
 
@@ -116,10 +120,10 @@ var program = function () {
     */
     var forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', function () {
-      if (video.duration - video.currenttime <= 3) {
-        video.currenttime = video.duration;
+      if (video.duration - video.currentTime <= 3) {
+        video.currentTime = video.duration;
       } else {
-        video.currenttime += 3;
+        video.currentTime += 3;
       }
     });
   }

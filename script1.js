@@ -67,10 +67,14 @@ const program = (function() {
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
-      if(video.currenttime <= 3){
-        video.currenttime = 0;
+      console.log(video.currentTime);
+      console.log('Kemst inn í fallið :P');
+      if(video.currentTime <= 3){
+        video.currentTime = 0;
+        console.log('fer inn í if');
       } else {
-        video.currenttime -= 3;
+        video.currentTime -= 3;
+        console.log('fer inn í else');
       }
     });
 
@@ -115,10 +119,10 @@ const program = (function() {
     */
     const forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', () => {
-      if((video.duration - video.currenttime) <= 3){
-        video.currenttime = video.duration;
+      if((video.duration - video.currentTime) <= 3){
+        video.currentTime = video.duration;
       } else {
-        video.currenttime += 3;
+        video.currentTime += 3;
       }
     });
   }
