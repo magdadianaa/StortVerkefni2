@@ -18,6 +18,10 @@
         width: 100%;
       }
     }
+    &__textContainer {
+      p:first-child {
+        font-weight: bold;
+    }
 
     &__row {
 
