@@ -34,6 +34,12 @@ h1,h2 {
 
 h1:first-of-type {
   padding-bottom: 0;
+  margin-left: 2 * $gutter;
+
+  @media(max-width: 1199px) {
+    margin-left: 5px;
+  }
+
 }
 
 

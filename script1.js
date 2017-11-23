@@ -111,12 +111,12 @@ const program = (function() {
         takki.classList.add('button__controls--mute');
       }
     });
-    /*
+
     const full = document.querySelector('.button__controls--fullscreen');
     full.addEventListener('click', () => {
       //video.requestFullscreen(); ---> þetta er eh skrítið
     }
-    */
+
     const forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', () => {
       if((video.duration - video.currentTime) <= 3){
