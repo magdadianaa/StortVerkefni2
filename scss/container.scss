@@ -2,7 +2,9 @@
     width: 100%;
     max-width: 1200px;
 
-
+    @media(max-width: 1199px) {
+      margin: 0px 5px;
+    }
     &__content {
       width: 33%;
       padding-bottom: 3em;
@@ -21,6 +23,7 @@
     &__textContainer {
       p:first-child {
         font-weight: bold;
+      }
     }
 
     &__row {
