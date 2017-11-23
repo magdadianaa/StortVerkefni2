@@ -50,11 +50,6 @@ const program = (function() {
     video.pause();
     takkarSettir();
 
-    /*play.addEventListener('click', () => {
-      playTakki();
-    });
-    //video.play();
-*/
     const back = document. querySelector('.back');
 
     back.classList.add('text__heading');
