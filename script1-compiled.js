@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
   program.init(player);
 });
 var program = function () {
-  //const id;
   var spilari;
   var video;
 
@@ -36,7 +35,7 @@ var program = function () {
   function create(numer) {
     empty(spilari);
     var container = document.createElement('div');
-    //const titill = numer.title;
+    // const titill = numer.title;
     var myndband = numer.video;
 
     spilari.appendChild(container);
@@ -69,7 +68,7 @@ var program = function () {
         divTakki.classList.add('play__eydaPlay');
         yfirDiv.classList.remove('play__takki');
         yfirDiv.classList.add('play__takki__eftir');
-        //Setja overlay
+        // Setja overlay
       } else {
         video.pause();
         var _takki = document.querySelector('.button__controls--pause');
@@ -81,7 +80,7 @@ var program = function () {
         divTakki.classList.add('play__midja');
         yfirDiv.classList.remove('play__takki__eftir');
         yfirDiv.classList.add('play__takki');
-        //Taka af overlay
+        // Taka af overlay
       }
     });
     yfirDiv.appendChild(divTakki);
@@ -91,7 +90,7 @@ var program = function () {
     video.pause();
     takkarSettir();
 
-    /*play.addEventListener('click', () => {
+    /* play.addEventListener('click', () => {
       playTakki();
     });
     //video.play();
@@ -108,14 +107,14 @@ var program = function () {
   function takkarSettir() {
     var back = document.querySelector('.button__controls--back');
     back.addEventListener('click', function () {
-      console.log(video.currentTime);
-      console.log('Kemst inn í fallið :P');
+      // console.log(video.currentTime);
+      // console.log('Kemst inn í fallið :P');
       if (video.currentTime <= 3) {
         video.currentTime = 0;
-        console.log('fer inn í if');
+        // console.log('fer inn í if');
       } else {
         video.currentTime -= 3;
-        console.log('fer inn í else');
+        // console.log('fer inn í else');
       }
     });
 
@@ -127,7 +126,7 @@ var program = function () {
 
         takki.classList.remove('button__controls--play');
         takki.classList.add('button__controls--pause');
-        //Setja overlay
+        // Setja overlay
         var overTakki = document.querySelector('.play__overplay');
         overTakki.classList.remove('play__overplay');
         var divTakki = document.querySelector('.play__midja');
@@ -142,7 +141,7 @@ var program = function () {
 
         _takki2.classList.remove('button__controls--pause');
         _takki2.classList.add('button__controls--play');
-        //Taka af overlay
+        // Taka af overlay
         var _overTakki = document.querySelector('.play__eydaPlay');
         _overTakki.classList.remove('play__eydaPlay');
         _overTakki.classList.add('play__midja');
@@ -156,7 +155,7 @@ var program = function () {
 
     var mute = document.querySelector('.button__controls--mute');
     mute.addEventListener('click', function () {
-      if (video.muted == false) {
+      if (video.muted === false) {
         video.muted = true;
         var takki = document.querySelector('.button__controls--mute');
         takki.classList.remove('button__controls--mute');
