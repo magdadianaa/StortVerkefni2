@@ -1,0 +1,32 @@
+.play {
+    &__takki {
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+    }
+    
+    &__takki__eftir {
+        opacity: 1;
+    }
+
+    &__overplay {
+        background-image: url(img/play.svg);
+        width: 60px;
+        height: 66px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 60px 60px;
+        border: 0;
+
+    }
+
+    &__midja {
+        position: absolute;
+        left: 43%;
+        top: 46%;
+    }
+
+    &__eydaPlay {
+        visibility: hidden
+    }
+}

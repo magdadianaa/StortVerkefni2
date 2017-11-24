@@ -49,7 +49,45 @@ const program = (function() {
     video.src = myndband;
     video.classList.add('container__myndband');
 
-    container.appendChild(video);
+    /* erum að búa til overlay */ 
+    const overlayTakki = document.createElement('button');
+    const divTakki = document.createElement('div');
+    divTakki.appendChild(overlayTakki);
+    const yfirDiv = document.createElement('div');
+    overlayTakki.classList.add('play__overplay');
+    divTakki.classList.add('play__midja');
+    yfirDiv.classList.add('play__takki');
+    yfirDiv.addEventListener('click', () => {
+      if(video.paused === true){
+        video.play();
+        const takki = document.querySelector('.button__controls--play');
+        takki.classList.remove('button__controls--play');
+        takki.classList.add('button__controls--pause');
+        overlayTakki.classList.remove('play__overplay');
+        divTakki.classList.remove('play__midja');
+        divTakki.classList.add('play__eydaPlay');
+        yfirDiv.classList.remove('play__takki');
+        yfirDiv.classList.add('play__takki__eftir');
+        //Setja overlay
+      } else {
+        video.pause();
+        const takki = document.querySelector('.button__controls--pause');
+        takki.classList.remove('button__controls--pause');
+        takki.classList.add('button__controls--play')
+
+        overlayTakki.classList.add('play__overplay');
+        divTakki.classList.remove('play__eydaPlay');
+        divTakki.classList.add('play__midja');
+        yfirDiv.classList.remove('play__takki__eftir');
+        yfirDiv.classList.add('play__takki');
+        //Taka af overlay
+      }
+    });
+    yfirDiv.appendChild(divTakki);
+    yfirDiv.appendChild(video);
+    
+
+    container.appendChild(yfirDiv);
     video.pause();
     takkarSettir();
 
@@ -81,6 +119,7 @@ const program = (function() {
       }
     });
 
+
     const play = document.querySelector('.button__controls--play');
     play.addEventListener('click', () => {
       if(video.paused === true){
@@ -90,13 +129,29 @@ const program = (function() {
         takki.classList.remove('button__controls--play');
         takki.classList.add('button__controls--pause');
         //Setja overlay
+        const overTakki = document.querySelector('.play__overplay');
+        overTakki.classList.remove('play__overplay');
+        const divTakki = document.querySelector('.play__midja');
+        divTakki.classList.remove('play__midja');
+        divTakki.classList.add('play__eydaPlay');
+        const yfirDivTakki = document.querySelector('.play__takki');
+        yfirDivTakki.classList.remove('play__takki');
+        yfirDivTakki.classList.add('play__takki__eftir');
       } else {
         video.pause();
         const takki = document.querySelector('.button__controls--pause');
 
         takki.classList.remove('button__controls--pause');
         takki.classList.add('button__controls--play')
-        //Taka af overlay
+      //Taka af overlay
+        const overTakki = document.querySelector('.play__eydaPlay');
+        overTakki.classList.remove('play__eydaPlay');
+        overTakki.classList.add('play__midja');
+        const takkatakki = document.querySelector('button');
+        takkatakki.classList.add('play__overplay');
+        const divYfir = document.querySelector('.play__takki__eftir');
+        divYfir.classList.remove('play__takki__eftir');
+        divYfir.classList.add('play__takki');
       }
     });
 
