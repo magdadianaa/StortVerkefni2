@@ -1,129 +1,30 @@
 const API = './videos.json';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const player = document.querySelector('.player');
+const program = (function program1() {
+  let spilari;
+  let video;
 
-  program.init(player);
-});
-const program = (function () {
-  var spilari;
-  var video;
-
-  function open() {
-    const request = new XMLHttpRequest();
-
-    const qs = new URLSearchParams(window.location.search);
-
-    const id = qs.get('id');
-    const gildi = id.substring(2, 3);
-    const tala = parseInt(gildi);
-
-    request.open('GET', API, true);
-    request.onload = () => {
-      if (request.status >= 200 && request.status < 400) {
-        const data = JSON.parse(request.response);
-        const numer = data.videos[tala - 1];
-        create(numer);
-      } else {
-        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
-      }
-    };
-    request.send();
-  }
-  function create(numer) {
-    empty(spilari);
-    const container = document.createElement('div');
-    // const titill = numer.title;
-    var myndband = numer.video;
-
-    spilari.appendChild(container);
-    const titill = document.createElement('h1');
-    titill.innerText = numer.title;
-    container.appendChild(titill);
-    titill.classList.add('text__videoHeader');
-    container.classList.add('container__video');
-
-    video = document.createElement('video');
-    video.src = myndband;
-    video.classList.add('container__myndband');
-
-    /* erum að búa til overlay */
-    const overlayTakki = document.createElement('button');
-    const divTakki = document.createElement('div');
-    divTakki.appendChild(overlayTakki);
-    const yfirDiv = document.createElement('div');
-    overlayTakki.classList.add('play__overplay');
-    divTakki.classList.add('play__midja');
-    yfirDiv.classList.add('play__takki');
-    yfirDiv.addEventListener('click', () => {
-      if (video.paused === true) {
-        video.play();
-        const takki = document.querySelector('.button__controls--play');
-        takki.classList.remove('button__controls--play');
-        takki.classList.add('button__controls--pause');
-        overlayTakki.classList.remove('play__overplay');
-        divTakki.classList.remove('play__midja');
-        divTakki.classList.add('play__eydaPlay');
-        yfirDiv.classList.remove('play__takki');
-        yfirDiv.classList.add('play__takki__eftir');
-        // Setja overlay
-      } else {
-        video.pause();
-        const takki = document.querySelector('.button__controls--pause');
-        takki.classList.remove('button__controls--pause');
-        takki.classList.add('button__controls--play');
-
-        overlayTakki.classList.add('play__overplay');
-        divTakki.classList.remove('play__eydaPlay');
-        divTakki.classList.add('play__midja');
-        yfirDiv.classList.remove('play__takki__eftir');
-        yfirDiv.classList.add('play__takki');
-        // Taka af overlay
-      }
-    });
-    yfirDiv.appendChild(divTakki);
-    yfirDiv.appendChild(video);
-
-
-    container.appendChild(yfirDiv);
-    video.pause();
-    takkarSettir();
-
-    /* play.addEventListener('click', () => {
-      playTakki();
-    });
-    //video.play();
-*/
-    const back = document.querySelector('.back');
-
-    back.classList.add('text__back');
-    back.addEventListener('click', () => {
-      window.location = './index.html';
-      empty(spilari);
-    });
+  function empty(element) {
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
   }
 
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
-      // console.log(video.currentTime);
-      // console.log('Kemst inn í fallið :P');
       if (video.currentTime <= 3) {
         video.currentTime = 0;
-        // console.log('fer inn í if');
       } else {
         video.currentTime -= 3;
-        // console.log('fer inn í else');
       }
     });
-
 
     const play = document.querySelector('.button__controls--play');
     play.addEventListener('click', () => {
       if (video.paused === true) {
         video.play();
         const takki = document.querySelector('.button__controls--play');
-
         takki.classList.remove('button__controls--play');
         takki.classList.add('button__controls--pause');
         // Setja overlay
@@ -138,7 +39,6 @@ const program = (function () {
       } else {
         video.pause();
         const takki = document.querySelector('.button__controls--pause');
-
         takki.classList.remove('button__controls--pause');
         takki.classList.add('button__controls--play');
         // Taka af overlay
@@ -189,16 +89,96 @@ const program = (function () {
     });
   }
 
-  function empty(element) {
-    while (element.firstChild) {
-      element.removeChild(element.firstChild);
-    }
+  function create(numer) {
+    const myndband = numer.video;
+    empty(spilari);
+    const container = document.createElement('div');
+    spilari.appendChild(container);
+    const titill = document.createElement('h1');
+    titill.innerText = numer.title;
+    container.appendChild(titill);
+    titill.classList.add('text__videoHeader');
+    container.classList.add('container__video');
+    video = document.createElement('video');
+    video.src = myndband;
+    video.classList.add('container__myndband');
+    /* erum að búa til overlay */
+    const overlayTakki = document.createElement('button');
+    const divTakki = document.createElement('div');
+    divTakki.appendChild(overlayTakki);
+    const yfirDiv = document.createElement('div');
+    overlayTakki.classList.add('play__overplay');
+    divTakki.classList.add('play__midja');
+    yfirDiv.classList.add('play__takki');
+    yfirDiv.addEventListener('click', () => {
+      if (video.paused === true) {
+        video.play();
+        const takki = document.querySelector('.button__controls--play');
+        takki.classList.remove('button__controls--play');
+        takki.classList.add('button__controls--pause');
+        // Setja overlay á
+        overlayTakki.classList.remove('play__overplay');
+        divTakki.classList.remove('play__midja');
+        divTakki.classList.add('play__eydaPlay');
+        yfirDiv.classList.remove('play__takki');
+        yfirDiv.classList.add('play__takki__eftir');
+      } else {
+        video.pause();
+        const takki = document.querySelector('.button__controls--pause');
+        takki.classList.remove('button__controls--pause');
+        takki.classList.add('button__controls--play');
+        // Taka af overlay
+        overlayTakki.classList.add('play__overplay');
+        divTakki.classList.remove('play__eydaPlay');
+        divTakki.classList.add('play__midja');
+        yfirDiv.classList.remove('play__takki__eftir');
+        yfirDiv.classList.add('play__takki');
+      }
+    });
+    yfirDiv.appendChild(divTakki);
+    yfirDiv.appendChild(video);
+    container.appendChild(yfirDiv);
+    video.pause();
+    takkarSettir();
+    const back = document.querySelector('.back');
+    back.classList.add('text__back');
+    back.addEventListener('click', () => {
+      window.location = './index.html';
+      empty(spilari);
+    });
   }
-  function init(player) {
+
+  function open() {
+    const request = new XMLHttpRequest();
+    const qs = new URLSearchParams(window.location.search);
+    const id = qs.get('id');
+    const gildi = id.substring(2, 3);
+    const tala = parseFloat(gildi);
+    request.open('GET', API, true);
+    request.onload = () => {
+      /* ef id er til þá birtum við myndbandið, annars birtum við villuskilaboð */
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.response);
+        const numer = data.videos[tala - 1];
+        create(numer);
+      } else {
+        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
+      }
+    };
+    request.send();
+  }
+
+
+  function init() {
     spilari = document.querySelector('.player__container');
     open();
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const player = document.querySelector('.player');
+    program.init(player);
+  });
   return {
-    init: init,
+    init,
   };
-})();
+}());
