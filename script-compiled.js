@@ -7,6 +7,9 @@ var program = function program1() {
   var i = void 0;
   var sidan = void 0;
 
+  /**
+  * Býr til element sem eru á síðunni
+  */
   function element(name, child) {
     var el = document.createElement(name);
 
@@ -17,6 +20,10 @@ var program = function program1() {
     }
     return el;
   }
+
+  /**
+  * Fall sem býr til strenginn sem segir til um lengdina
+  */
   function buidTil(runa) {
     var dagur = new Date(runa);
     var munur = new Date().getTime() - dagur;
@@ -55,6 +62,9 @@ var program = function program1() {
     return 'Fyrir 1 klukkustund síðan';
   }
 
+  /**
+  * Fall sem býr til streng sem segir til um mínútur:sekúndur lengd videos
+  */
   function athugaStak(time) {
     var minutes = Math.floor(time / 60);
     var seconds = time - minutes * 60;
@@ -66,12 +76,18 @@ var program = function program1() {
     return skilum;
   }
 
+  /**
+  * Fall sem býr til slóðina sem gefur video.html númerið á myndbandinu
+  */
   function slod(stak) {
     var numer = stak.id;
     var url = '/video.html?id=$(' + numer + ')';
     return url;
   }
 
+  /**
+  * Býr til nýjan lista af videounum
+  */
   function create(stak, container) {
     var mynd = document.createElement('img');
 
@@ -108,7 +124,7 @@ var program = function program1() {
     var load = ul.appendChild(element('p', sidan));
     textaBox.appendChild(load);
 
-    textaBox.classList.add('container__textContainer');
+    textaBox.classList.add('container__text');
     ul.appendChild(textaBox);
 
     ul.addEventListener('click', function () {
@@ -118,6 +134,10 @@ var program = function program1() {
     container.classList.add('text__heading');
     container.appendChild(ul);
   }
+
+  /**
+  * Sækir upplýsingar um videoinn í gögnunum
+  */
   function open(videos) {
     var request = new XMLHttpRequest();
 

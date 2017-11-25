@@ -6,12 +6,18 @@ var program = function program1() {
   var spilari = void 0;
   var video = void 0;
 
+  /**
+  * Tæmir boxið sem geymir video-ið
+  */
   function empty(element) {
     while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
   }
 
+  /**
+  * actionListener bætt á þá takka sem framkvæma aðgerðir fyrir videoið
+  */
   function takkarSettir() {
     var back = document.querySelector('.button__controls--back');
     back.addEventListener('click', function () {
@@ -91,6 +97,9 @@ var program = function program1() {
     });
   }
 
+  /**
+  * Búum til hlutinn sem á að geyma videoið og titilinn
+  */
   function create(numer) {
     var myndband = numer.video;
     empty(spilari);
@@ -150,6 +159,9 @@ var program = function program1() {
     });
   }
 
+  /**
+  * Sækir upplýsingar um hvaða myndband á að opna
+  */
   function open() {
     var request = new XMLHttpRequest();
     var qs = new URLSearchParams(window.location.search);

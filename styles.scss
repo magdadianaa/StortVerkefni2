@@ -22,27 +22,34 @@ html { /* stylelint-disable-line */
   margin: 0;
 }
 
+p:first-of-type { /* stylelint-disable-line */
+  font-weight: bold;
+}
+
 html { /* stylelint-disable-line */
   line-height: 1.5;
-  background-color: rgb(35,35,35);
+  background-color: rgb(35, 35, 35);
 }
-h1,h2 {
-  font-family: $font-main;
-  color: rgb(255,255,255);
+
+h1 { /* stylelint-disable-line */
   padding: 1em 0;
-}
+  font-family: $font-main;
+  color: rgb(255, 255, 255);
+  h1:first-of-type { /* stylelint-disable-line */
+    padding-bottom: 0;
 
-h1:first-of-type {
-  //width: ($col / 12 * 100) * 1%;
-  padding-bottom: 0;
-  
+    @media (max-width: 1199px) {
+      margin-left: 5px;
+    }
 
-  @media(max-width: 1199px) {
-    margin-left: 5px;
   }
-
 }
 
+h2 { /* stylelint-disable-line */
+  padding: 1em 0;
+  font-family: $font-main;
+  color: rgb(255, 255, 255);
+}
 
 img { /* stylelint-disable-line */
   max-width: 100%;

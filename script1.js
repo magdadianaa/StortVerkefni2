@@ -4,12 +4,18 @@ const program = (function program1() {
   let spilari;
   let video;
 
+  /**
+  * Tæmir boxið sem geymir video-ið
+  */
   function empty(element) {
     while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
   }
 
+  /**
+  * actionListener bætt á þá takka sem framkvæma aðgerðir fyrir videoið
+  */
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
@@ -89,6 +95,9 @@ const program = (function program1() {
     });
   }
 
+  /**
+  * Búum til hlutinn sem á að geyma videoið og titilinn
+  */
   function create(numer) {
     const myndband = numer.video;
     empty(spilari);
@@ -148,6 +157,9 @@ const program = (function program1() {
     });
   }
 
+  /**
+  * Sækir upplýsingar um hvaða myndband á að opna
+  */
   function open() {
     const request = new XMLHttpRequest();
     const qs = new URLSearchParams(window.location.search);
@@ -167,7 +179,6 @@ const program = (function program1() {
     };
     request.send();
   }
-
 
   function init() {
     spilari = document.querySelector('.player__container');
