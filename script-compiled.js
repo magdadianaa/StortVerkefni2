@@ -81,8 +81,8 @@ var program = function program1() {
   */
   function slod(stak) {
     var numer = stak.id;
-    var url = '/video.html?id=$(' + numer + ')';
-    return url;
+    var url = 'https://notendur.hi.is/alm20/vefforritun/stortverkefni2/video.html?id=$(' + numer + ')';
+    window.location.assign(url);
   }
 
   /**
@@ -128,7 +128,7 @@ var program = function program1() {
     ul.appendChild(textaBox);
 
     ul.addEventListener('click', function () {
-      window.location = slod(stak);
+      slod(stak);
     });
 
     container.classList.add('text__heading');
@@ -136,7 +136,7 @@ var program = function program1() {
   }
 
   /**
-  * Sækir upplýsingar um videoinn í gögnunum
+  * Sækir upplýsingar um videoinn
   */
   function open(videos) {
     var request = new XMLHttpRequest();

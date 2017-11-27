@@ -177,8 +177,9 @@ const program = (function program1() {
 
     const back = document.querySelector('.back');
     back.classList.add('text__back');
+
     back.addEventListener('click', () => {
-      window.location = './index.html';
+      window.location = 'https://notendur.hi.is/alm20/vefforritun/stortverkefni2/';
       empty(spilari);
     });
 
