@@ -77,7 +77,7 @@ const program = (function program1() {
   */
   function slod(stak) {
     const numer = stak.id;
-    const url = `https://notendur.hi.is/alm20/vefforritun/stortverkefni2/video.html?id=$(${numer})`;
+    const url = `https://notendur.hi.is/alm20/vefforritun/stortverkefni2/forrit/video.html?id=$(${numer})`;
     window.location.assign(url);
   }
 

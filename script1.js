@@ -179,7 +179,7 @@ const program = (function program1() {
     back.classList.add('text__back');
 
     back.addEventListener('click', () => {
-      window.location = 'https://notendur.hi.is/alm20/vefforritun/stortverkefni2/';
+      window.location = 'https://notendur.hi.is/alm20/vefforritun/stortverkefni2/forrit';
       empty(spilari);
     });
 
