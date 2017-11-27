@@ -5,34 +5,36 @@ $max-width: 1200px;
 
 .row {
   max-width: $max-width;
-  @media(max-width: $min-width) {
+  @media (max-width: $min-width) {
     flex-direction: column;
   }
+
   &__content {
-    @media(max-width: $max-width) {
-        width: 33%;
+    @media (max-width: $max-width) {
+      width: 33%;
     }
-    @media(max-width: $mid-width) {
+    @media (max-width: $mid-width) {
       width: 50%;
     }
-    @media(max-width: $min-width) {
+    @media (max-width: $min-width) {
       width: 100%;
     }
   }
+
   &__container {
     display: flex;
-    //flex-direction: row;
     flex-wrap: wrap;
-    /*border-bottom: 1px #eee solid;*/
 
-    @media(max-width: $min-width) {
+    @media (max-width: $min-width) {
       flex-direction: column;
     }
   }
 }
+
 @mixin columns($col: 1) {
   width: ($col / 12 * 100) * 1%;
 }
+
 .offset {
   &-2 {
     margin-left: (2 / 12 * 100) * 1%;
@@ -43,6 +45,7 @@ $max-width: 1200px;
       &-0 {
         margin-left: 0;
       }
+
       &-12 {
         @include columns(12);
       }

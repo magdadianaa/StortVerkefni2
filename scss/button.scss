@@ -1,42 +1,51 @@
+$max-width: 1200px;
+
 .button {
+  max-width: $max-width;
+
   &__container {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 30px;
-
   }
+
   &__controls {
     width: 60px;
     height: 60px;
     padding: 6px;
-    margin: 0 10px 20px 10px;
+    margin: 0 10px 20px;
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 60px 60px;
     border: 0;
-
-
   }
+
   &__controls--play {
-    background-image: url(img/play.svg);
+    background-image: url("img/play.svg");
   }
+
   &__controls--mute {
-    background-image: url(img/mute.svg);
+    background-image: url("img/mute.svg");
   }
+
   &__controls--back {
-    background-image: url(img/back.svg);
+    background-image: url("img/back.svg");
   }
+
   &__controls--fullscreen {
-    background-image: url(img/fullscreen.svg);
+    background-image: url("img/fullscreen.svg");
   }
+
   &__controls--forward {
-    background-image: url(img/next.svg);
+    background-image: url("img/next.svg");
   }
+
   &__controls--notmute {
-    background-image: url(img/unmute.svg);
+    background-image: url("img/unmute.svg");
   }
+
   &__controls--pause {
-    background-image: url(img/pause.svg);
+    background-image: url("img/pause.svg");
   }
 }

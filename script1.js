@@ -1,68 +1,29 @@
 const API = './videos.json';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const player = document.querySelector('.player');
+const program = (function program1() {
+  let spilari;
+  let video;
 
-  program.init(player);
-});
-const program = (function() {
-  //const id;
-  var spilari;
-  var video;
-
-  function open() {
-    const request = new XMLHttpRequest();
-
-    const qs = new URLSearchParams(window.location.search);
-
-    const id = qs.get('id');
-    const gildi = id.substring(2, 3);
-    const tala = parseInt(gildi);
-
-    request.open('GET', API, true);
-    request.onload = () => {
-      if(request.status >= 200 && request.status < 400) {
-        const data = JSON.parse(request.response);
-        const numer = data.videos[tala-1];
-        create(numer);
-      } else {
-        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
-      }
-    };
-    request.send();
-
-  }
-  function create(numer) {
-    empty(spilari);
-    const container = document.createElement('div');
-    const titill = numer.title;
-    var myndband = numer.video;
-
-    spilari.appendChild(container);
-    container.appendChild(document.createTextNode(titill));
-    container.classList.add('text__heading');
-    container.classList.add('container__video');
-
-    video = document.createElement('video');
-    video.src = myndband;
-
-    container.appendChild(video);
-    video.pause();
-    takkarSettir();
-
-    const back = document. querySelector('.back');
-
-    back.classList.add('text__heading');
-    back.addEventListener('click', () => {
-      window.location = './index.html';
-      empty(spilari);
-    });
+  /**
+  * Tæmir boxið sem geymir video-ið
+  */
+  function empty(element) {
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
   }
 
+  /**
+  * actionListener bætt á þá takka sem framkvæma aðgerðir fyrir videoið
+  */
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
+<<<<<<< HEAD
       if(video.currentTime <= 3){
+=======
+      if (video.currentTime <= 3) {
+>>>>>>> 2271e3fe6cf8cb7f946f60dabc4df2d5afb021f8
         video.currentTime = 0;
       } else {
         video.currentTime -= 3;
@@ -71,26 +32,40 @@ const program = (function() {
 
     const play = document.querySelector('.button__controls--play');
     play.addEventListener('click', () => {
-      if(video.paused === true){
+      if (video.paused === true) {
         video.play();
         const takki = document.querySelector('.button__controls--play');
-
         takki.classList.remove('button__controls--play');
         takki.classList.add('button__controls--pause');
-        //Setja overlay
+        // Setja overlay
+        const overTakki = document.querySelector('.play__overplay');
+        overTakki.classList.remove('play__overplay');
+        const divTakki = document.querySelector('.play__midja');
+        divTakki.classList.remove('play__midja');
+        divTakki.classList.add('play__eydaPlay');
+        const yfirDivTakki = document.querySelector('.play__takki');
+        yfirDivTakki.classList.remove('play__takki');
+        yfirDivTakki.classList.add('play__takki__eftir');
       } else {
         video.pause();
         const takki = document.querySelector('.button__controls--pause');
-
         takki.classList.remove('button__controls--pause');
-        takki.classList.add('button__controls--play')
-        //Taka af overlay
+        takki.classList.add('button__controls--play');
+        // Taka af overlay
+        const overTakki = document.querySelector('.play__eydaPlay');
+        overTakki.classList.remove('play__eydaPlay');
+        overTakki.classList.add('play__midja');
+        const takkatakki = document.querySelector('button');
+        takkatakki.classList.add('play__overplay');
+        const divYfir = document.querySelector('.play__takki__eftir');
+        divYfir.classList.remove('play__takki__eftir');
+        divYfir.classList.add('play__takki');
       }
     });
 
     const mute = document.querySelector('.button__controls--mute');
     mute.addEventListener('click', () => {
-      if(video.muted == false){
+      if (video.muted === false) {
         video.muted = true;
         const takki = document.querySelector('.button__controls--mute');
         takki.classList.remove('button__controls--mute');
@@ -116,7 +91,7 @@ const program = (function() {
 
     const forward = document.querySelector('.button__controls--forward');
     forward.addEventListener('click', () => {
-      if((video.duration - video.currentTime) <= 3){
+      if ((video.duration - video.currentTime) <= 3) {
         video.currentTime = video.duration;
       } else {
         video.currentTime += 3;
@@ -124,17 +99,101 @@ const program = (function() {
     });
   }
 
-  function empty(element) {
-    while(element.firstChild) {
-      element.removeChild(element.firstChild);
-    }
+  /**
+  * Búum til hlutinn sem á að geyma videoið og titilinn
+  */
+  function create(numer) {
+    const myndband = numer.video;
+    empty(spilari);
+    const container = document.createElement('div');
+    spilari.appendChild(container);
+    const titill = document.createElement('h1');
+    titill.innerText = numer.title;
+    container.appendChild(titill);
+    titill.classList.add('text__videoHeader');
+    container.classList.add('container__video');
+    video = document.createElement('video');
+    video.src = myndband;
+    video.classList.add('container__myndband');
+    /* erum að búa til overlay */
+    const overlayTakki = document.createElement('button');
+    const divTakki = document.createElement('div');
+    divTakki.appendChild(overlayTakki);
+    const yfirDiv = document.createElement('div');
+    overlayTakki.classList.add('play__overplay');
+    divTakki.classList.add('play__midja');
+    yfirDiv.classList.add('play__takki');
+    yfirDiv.addEventListener('click', () => {
+      if (video.paused === true) {
+        video.play();
+        const takki = document.querySelector('.button__controls--play');
+        takki.classList.remove('button__controls--play');
+        takki.classList.add('button__controls--pause');
+        // Setja overlay á
+        overlayTakki.classList.remove('play__overplay');
+        divTakki.classList.remove('play__midja');
+        divTakki.classList.add('play__eydaPlay');
+        yfirDiv.classList.remove('play__takki');
+        yfirDiv.classList.add('play__takki__eftir');
+      } else {
+        video.pause();
+        const takki = document.querySelector('.button__controls--pause');
+        takki.classList.remove('button__controls--pause');
+        takki.classList.add('button__controls--play');
+        // Taka af overlay
+        overlayTakki.classList.add('play__overplay');
+        divTakki.classList.remove('play__eydaPlay');
+        divTakki.classList.add('play__midja');
+        yfirDiv.classList.remove('play__takki__eftir');
+        yfirDiv.classList.add('play__takki');
+      }
+    });
+    yfirDiv.appendChild(divTakki);
+    yfirDiv.appendChild(video);
+    container.appendChild(yfirDiv);
+    video.pause();
+    takkarSettir();
+    const back = document.querySelector('.back');
+    back.classList.add('text__back');
+    back.addEventListener('click', () => {
+      window.location = './index.html';
+      empty(spilari);
+    });
   }
-  function init(player) {
+
+  /**
+  * Sækir upplýsingar um hvaða myndband á að opna
+  */
+  function open() {
+    const request = new XMLHttpRequest();
+    const qs = new URLSearchParams(window.location.search);
+    const id = qs.get('id');
+    const gildi = id.substring(2, 3);
+    const tala = parseFloat(gildi);
+    request.open('GET', API, true);
+    request.onload = () => {
+      /* ef id er til þá birtum við myndbandið, annars birtum við villuskilaboð */
+      if (request.status >= 200 && request.status < 400) {
+        const data = JSON.parse(request.response);
+        const numer = data.videos[tala - 1];
+        create(numer);
+      } else {
+        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
+      }
+    };
+    request.send();
+  }
+
+  function init() {
     spilari = document.querySelector('.player__container');
     open();
   }
-  return {
-    init:init
-  }
 
-})();
+  document.addEventListener('DOMContentLoaded', () => {
+    const player = document.querySelector('.player');
+    program.init(player);
+  });
+  return {
+    init,
+  };
+}());
