@@ -19,11 +19,7 @@ const program = (function program1() {
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
-<<<<<<< HEAD
       if(video.currentTime <= 3){
-=======
-      if (video.currentTime <= 3) {
->>>>>>> 2271e3fe6cf8cb7f946f60dabc4df2d5afb021f8
         video.currentTime = 0;
       } else {
         video.currentTime -= 3;
