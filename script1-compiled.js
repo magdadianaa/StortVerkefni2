@@ -35,7 +35,7 @@ var program = function program1() {
         var takki = document.querySelector('.button__controls--play');
         takki.classList.remove('button__controls--play');
         takki.classList.add('button__controls--pause');
-        // Setja overlay
+        // Taka overlay
         var overTakki = document.querySelector('.play__overplay');
         overTakki.classList.remove('play__overplay');
         var divTakki = document.querySelector('.play__midja');
@@ -49,7 +49,7 @@ var program = function program1() {
         var _takki = document.querySelector('.button__controls--pause');
         _takki.classList.remove('button__controls--pause');
         _takki.classList.add('button__controls--play');
-        // Taka af overlay
+        // Setja overlay
         var _overTakki = document.querySelector('.play__eydaPlay');
         _overTakki.classList.remove('play__eydaPlay');
         _overTakki.classList.add('play__midja');
@@ -151,12 +151,20 @@ var program = function program1() {
     container.appendChild(yfirDiv);
     video.pause();
     takkarSettir();
-    var back = document.querySelector('.back');
-    back.classList.add('text__back');
-    back.addEventListener('click', function () {
-      window.location = './index.html';
-      empty(spilari);
-    });
+    video.addEventListener('ended', function () {
+      var takki = document.querySelector('.button__controls--pause');
+      takki.classList.remove('button__controls--pause');
+      takki.classList.add('button__controls--play');
+      // Setja overlay
+      var overTakki = document.querySelector('.play__eydaPlay');
+      overTakki.classList.remove('play__eydaPlay');
+      overTakki.classList.add('play__midja');
+      var takkatakki = document.querySelector('button');
+      takkatakki.classList.add('play__overplay');
+      var divYfir = document.querySelector('.play__takki__eftir');
+      divYfir.classList.remove('play__takki__eftir');
+      divYfir.classList.add('play__takki');
+    }, false);
   }
 
   /**
@@ -168,15 +176,34 @@ var program = function program1() {
     var id = qs.get('id');
     var gildi = id.substring(2, 3);
     var tala = parseFloat(gildi);
+
+    var back = document.querySelector('.back');
+    back.classList.add('text__back');
+    back.addEventListener('click', function () {
+      window.location = './index.html';
+      empty(spilari);
+    });
+
     request.open('GET', API, true);
     request.onload = function () {
       /* ef id er til þá birtum við myndbandið, annars birtum við villuskilaboð */
       if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.response);
         var numer = data.videos[tala - 1];
-        create(numer);
-      } else {
-        spilari.appendChild(document.createTextNode('Ekki fannst neitt myndband'));
+        if (numer) {
+          create(numer);
+        } else {
+          empty(spilari);
+          var container = document.createElement('div');
+          spilari.appendChild(container);
+          var titill = document.createElement('h1');
+          titill.innerText = 'Ekki fannst neitt myndband';
+          container.appendChild(titill);
+          titill.classList.add('text__videoHeader');
+          container.classList.add('container__video');
+          var takkaBox = document.querySelector('.button__container');
+          takkaBox.classList.add('button__hidden');
+        }
       }
     };
     request.send();

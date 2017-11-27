@@ -48,4 +48,8 @@ $max-width: 1200px;
   &__controls--pause {
     background-image: url("img/pause.svg");
   }
+
+  &__hidden {
+    display: none;
+  }
 }

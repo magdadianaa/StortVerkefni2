@@ -16,7 +16,6 @@ $mid-width: 1000px;
     color: rgb(255, 255, 255);
     @media (max-width: $min-width) {
       margin: $gutter 0;
-      white-space: wrap;
     }
   }
 
