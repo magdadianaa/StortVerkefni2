@@ -12,7 +12,7 @@ eru inn í styles.scss en þau eru:
   container (hólf)
   grid (uppröðun)
   header (titlar)
-  play (styllimynd á myndbandi)
+  play (stillimynd á myndbandi)
   text (textar)
 Síðurnar tvær nálgast gögn sín úr json-skjalinu videos.json og sækja gögnin með
 Ajax-beiðnum í gegnum js skjölin.
