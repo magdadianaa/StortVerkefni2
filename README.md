@@ -37,7 +37,9 @@ Til þess að keyra verkefnið á eigin tölvu er hægt að opna það á slóð
 verkefnisins eða ná í zip-skjalið á sömu slóð.
 Ef náð er í zip-skjalið þarf að vera með Node.js eða annað sambærilegt forrit
 tölvunni. Þá þarf að notast við npm og skipanalínuna, fara inn í verkefnið og
-nota skipunina "npm run dev". Þá keyrist forritið á aðalvafra notandans.
+nota skipunina "npm install" í fyrsta skipta og svo skipunina "npm run dev".
+Þá keyrist forritið á aðalvafra notandans. Ef notandi vill keyra forritið upp
+aftur síðar þarf einungis að notast við seinni skipunina.
 Ef verkefnið er opnað á slóð verkefnisins þá þarf ekki að gera neitt frekar.
 
 
