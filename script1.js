@@ -62,14 +62,10 @@ const program = (function() {
   function takkarSettir() {
     const back = document.querySelector('.button__controls--back');
     back.addEventListener('click', () => {
-      console.log(video.currentTime);
-      console.log('Kemst inn í fallið :P');
       if(video.currentTime <= 3){
         video.currentTime = 0;
-        console.log('fer inn í if');
       } else {
         video.currentTime -= 3;
-        console.log('fer inn í else');
       }
     });
 
