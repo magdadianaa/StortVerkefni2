@@ -28,7 +28,7 @@ skilar villum, stylelint, sem villules scss skjölin og skilar villum, sass,
 sem les styles.scss yfir í styles.css, og browser-sync, sem gerir okkur kleift
 að sjá þær breytingar sem við gerum í kóðanum um leið og við vistum þær.
 Í verkefninu eru allar þær myndir sem notaðar eru geymdar í tveim möppum.
-Myndir fyrir takka eru geymdar í möppunni img en styllimyndir fyrir videoin og
+Myndir fyrir takka eru geymdar í möppunni img en stillimyndir fyrir videoin og
 videoin sjálf eru geymd í möppunni videos.
 
 Keyrsla:
